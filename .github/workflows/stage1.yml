@@ -14,14 +14,6 @@ jobs:
         with:
           ref: 'main'
 
-      - name: 'Setup Node.js'
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-
-      - name: 'Enable Corepack'
-        run: corepack enable
-
       - name: 'Read meta.json'
         id: meta
         run: |
@@ -34,7 +26,16 @@ jobs:
           echo "buildCommand=$(jq -r '.buildCommand // "npx docusaurus build"' .github/scripts/meta.json)" >> $GITHUB_OUTPUT
           echo "buildOutput=$(jq -r '.buildOutput // "build"' .github/scripts/meta.json)" >> $GITHUB_OUTPUT
           echo "packageManager=$(jq -r '.packageManager // "npm"' .github/scripts/meta.json)" >> $GITHUB_OUTPUT
+          echo "nodeVersion=$(jq -r '.nodeVersion // "22"' .github/scripts/meta.json)" >> $GITHUB_OUTPUT
           cat .github/scripts/meta.json
+
+      - name: 'Setup Node.js'
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ steps.meta.outputs.nodeVersion }}
+
+      - name: 'Enable Corepack'
+        run: corepack enable
 
       - name: 'Run prepare.sh (clone, install, prereqs, apply fixes)'
         run: |
