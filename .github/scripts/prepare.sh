@@ -54,4 +54,7 @@ if [ -f "$FIXES_JSON" ]; then
     "
 fi
 
+# Write env vars needed by translate/build steps
+echo 'export NODE_OPTIONS="${NODE_OPTIONS:-} --openssl-legacy-provider"' > .build-env
+
 echo "[DONE] Repository is ready for docusaurus commands."
