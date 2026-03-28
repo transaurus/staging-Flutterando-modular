@@ -55,6 +55,10 @@ if [ -f "$FIXES_JSON" ]; then
 fi
 
 # Write env vars needed by translate/build steps
-echo 'export NODE_OPTIONS="${NODE_OPTIONS:-} --openssl-legacy-provider"' > .build-env
+cat > .build-env << 'ENVEOF'
+export NVM_DIR="${NVM_DIR:-$HOME/.nvm}"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" && nvm use 18 2>/dev/null
+export NODE_OPTIONS="${NODE_OPTIONS:-} --openssl-legacy-provider"
+ENVEOF
 
 echo "[DONE] Repository is ready for docusaurus commands."
