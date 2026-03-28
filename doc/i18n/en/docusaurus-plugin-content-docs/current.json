@@ -1,0 +1,18 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorialSidebar.category.Flutter Modular": {
+    "message": "Flutter Modular",
+    "description": "The label for category Flutter Modular in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.(Legacy) Modular 5": {
+    "message": "(Legacy) Modular 5",
+    "description": "The label for category (Legacy) Modular 5 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Shelf Modular": {
+    "message": "Shelf Modular",
+    "description": "The label for category Shelf Modular in sidebar tutorialSidebar"
+  }
+}
