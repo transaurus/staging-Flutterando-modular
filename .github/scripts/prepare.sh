@@ -55,9 +55,13 @@ if [ -f "$FIXES_JSON" ]; then
 fi
 
 # Write env vars needed by translate/build steps
+# This repo requires Node 18 (Docusaurus 2.4.1 + webpack 4)
 cat > .build-env << 'ENVEOF'
-export NVM_DIR="${NVM_DIR:-$HOME/.nvm}"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" && nvm use 18 2>/dev/null
+export N_PREFIX="$HOME/.n"
+if [ ! -f "$N_PREFIX/bin/node" ] || [ "$(${N_PREFIX}/bin/node --version | cut -d. -f1 | tr -d v)" != "18" ]; then
+  curl -fsSL https://raw.githubusercontent.com/tj/n/master/bin/n -o /tmp/n && bash /tmp/n 18
+fi
+export PATH="$N_PREFIX/bin:$PATH"
 export NODE_OPTIONS="${NODE_OPTIONS:-} --openssl-legacy-provider"
 ENVEOF
 
