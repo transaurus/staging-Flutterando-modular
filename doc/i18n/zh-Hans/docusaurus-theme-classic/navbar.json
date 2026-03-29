@@ -1,0 +1,18 @@
+{
+  "title": {
+    "message": "Modular",
+    "description": "The title in the navbar"
+  },
+  "logo.alt": {
+    "message": "Modular Logo",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.Getting Started": {
+    "message": "Getting Started",
+    "description": "Navbar item with label Getting Started"
+  },
+  "item.label.GitHub": {
+    "message": "GitHub",
+    "description": "Navbar item with label GitHub"
+  }
+}
